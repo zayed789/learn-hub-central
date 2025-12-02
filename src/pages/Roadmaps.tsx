@@ -1,4 +1,4 @@
-import { ChevronDown, Code, Shield, Brain, Database, CheckCircle2 } from "lucide-react";
+import { ChevronDown, Code, Shield, Brain, Database, CheckCircle2, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
@@ -11,6 +11,7 @@ const roadmaps = [
     icon: Code,
     color: "from-primary to-cyan-400",
     description: "Become a full-stack web developer from scratch",
+    roadmapUrl: "https://roadmap.sh/frontend",
     steps: [
       { title: "HTML & CSS Fundamentals", duration: "2-3 weeks", topics: ["HTML5 semantics", "CSS layouts", "Responsive design", "Flexbox & Grid"] },
       { title: "JavaScript Essentials", duration: "4-6 weeks", topics: ["Variables & functions", "DOM manipulation", "ES6+ features", "Async programming"] },
@@ -25,6 +26,7 @@ const roadmaps = [
     icon: Shield,
     color: "from-secondary to-pink-400",
     description: "Master cybersecurity and ethical hacking",
+    roadmapUrl: "https://roadmap.sh/cyber-security",
     steps: [
       { title: "Networking Fundamentals", duration: "3-4 weeks", topics: ["TCP/IP", "OSI model", "Network protocols", "Subnetting"] },
       { title: "Linux & System Administration", duration: "4-5 weeks", topics: ["Linux commands", "File systems", "User management", "Scripting"] },
@@ -39,6 +41,7 @@ const roadmaps = [
     icon: Brain,
     color: "from-orange-500 to-amber-400",
     description: "Build intelligent systems with AI/ML",
+    roadmapUrl: "https://roadmap.sh/ai-data-scientist",
     steps: [
       { title: "Python Programming", duration: "3-4 weeks", topics: ["Python basics", "Data structures", "Libraries (NumPy, Pandas)", "Jupyter notebooks"] },
       { title: "Mathematics for ML", duration: "4-5 weeks", topics: ["Linear algebra", "Calculus", "Probability", "Statistics"] },
@@ -53,6 +56,7 @@ const roadmaps = [
     icon: Database,
     color: "from-blue-500 to-indigo-400",
     description: "Analyze data and derive insights",
+    roadmapUrl: "https://roadmap.sh/ai-data-scientist",
     steps: [
       { title: "Python & Tools Setup", duration: "2-3 weeks", topics: ["Python basics", "Anaconda", "Jupyter", "Git basics"] },
       { title: "Data Analysis", duration: "4-5 weeks", topics: ["Pandas", "NumPy", "Data cleaning", "Exploratory analysis"] },
@@ -65,6 +69,11 @@ const roadmaps = [
 
 const RoadmapCard = ({ roadmap }: { roadmap: typeof roadmaps[0] }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleRoadmapLink = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    window.open(roadmap.roadmapUrl, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <div className="bg-card rounded-2xl border border-border overflow-hidden">
@@ -80,6 +89,13 @@ const RoadmapCard = ({ roadmap }: { roadmap: typeof roadmaps[0] }) => {
           <h3 className="text-xl font-semibold mb-1">{roadmap.title}</h3>
           <p className="text-muted-foreground text-sm">{roadmap.description}</p>
         </div>
+        <button
+          onClick={handleRoadmapLink}
+          className="px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors flex items-center gap-1.5 mr-2"
+        >
+          <ExternalLink className="w-4 h-4" />
+          roadmap.sh
+        </button>
         <ChevronDown className={cn("w-6 h-6 text-muted-foreground transition-transform duration-300", isOpen && "rotate-180")} />
       </button>
 
@@ -125,7 +141,8 @@ const RoadmapCard = ({ roadmap }: { roadmap: typeof roadmaps[0] }) => {
 
 const Roadmaps = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
+    
       <Navbar />
 
       <main className="pt-28 pb-20 px-6">

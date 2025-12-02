@@ -1,9 +1,9 @@
-import { BookOpen, Github, Twitter, Linkedin } from "lucide-react";
+import { BookOpen, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-card border-t border-border mt-20">
+    <footer className="bg-card/80 backdrop-blur-sm border-t border-border mt-20">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
@@ -31,21 +31,22 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Connect</h4>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors">
-                <Github className="w-5 h-5" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors">
+              <a 
+                href="https://www.linkedin.com/in/aqsa-zayn" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors"
+              >
                 <Linkedin className="w-5 h-5" />
+              </a>
+              <a 
+                href="mailto:aqsazayn@gmail.com" 
+                className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors"
+              >
+                <Mail className="w-5 h-5" />
               </a>
             </div>
           </div>
-        </div>
-
-        <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} LearnHub. All rights reserved.</p>
         </div>
       </div>
     </footer>

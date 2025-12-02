@@ -1,4 +1,5 @@
 import { ExternalLink, Clock, Star, BookOpen, Code, Shield, Brain, Database, Palette } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -115,12 +116,18 @@ const courses = [
 ];
 
 const Courses = () => {
+  const [activeCategory, setActiveCategory] = useState("all");
+
   const handleCourseClick = (url: string) => {
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
+  const filteredCourses = activeCategory === "all" 
+    ? courses 
+    : courses.filter(course => course.category === activeCategory);
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navbar />
 
       <main className="pt-28 pb-20 px-6">
@@ -140,7 +147,12 @@ const Courses = () => {
             {categories.map((cat) => (
               <button
                 key={cat.id}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted hover:bg-primary/20 hover:text-primary transition-all duration-300 text-sm font-medium"
+                onClick={() => setActiveCategory(cat.id)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium ${
+                  activeCategory === cat.id 
+                    ? "bg-primary text-primary-foreground" 
+                    : "bg-muted hover:bg-primary/20 hover:text-primary"
+                }`}
               >
                 <cat.icon className="w-4 h-4" />
                 {cat.label}
@@ -150,7 +162,8 @@ const Courses = () => {
 
           {/* Course Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {courses.map((course, index) => (
+            {filteredCourses.map((course, index) => (
+            
               <div
                 key={course.id}
                 className="group relative bg-card rounded-2xl border border-border overflow-hidden card-hover"
