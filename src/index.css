@@ -58,10 +58,8 @@
   }
 
   body {
-    @apply text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Outfit', sans-serif;
-    background: var(--gradient-sunset);
-    background-attachment: fixed;
     min-height: 100vh;
   }
 }
