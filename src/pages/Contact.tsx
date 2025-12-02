@@ -1,4 +1,4 @@
-import { Mail, MessageSquare, Send, MapPin, Clock } from "lucide-react";
+import { Mail, Send, Clock } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,7 +30,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navbar />
 
       <main className="pt-28 pb-20 px-6">
@@ -53,15 +53,9 @@ const Contact = () => {
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="font-semibold mb-2">Email Us</h3>
-                <p className="text-muted-foreground text-sm">hello@learnhub.com</p>
-              </div>
-
-              <div className="p-6 rounded-2xl bg-card border border-border">
-                <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
-                  <MessageSquare className="w-6 h-6 text-secondary" />
-                </div>
-                <h3 className="font-semibold mb-2">Live Chat</h3>
-                <p className="text-muted-foreground text-sm">Available Mon-Fri, 9am-5pm</p>
+                <a href="mailto:aqsazayn@gmail.com" className="text-muted-foreground text-sm hover:text-primary transition-colors">
+                  aqsazayn@gmail.com
+                </a>
               </div>
 
               <div className="p-6 rounded-2xl bg-card border border-border">
